@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         body{
+            background-color: rgb(60, 60, 136);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+        }
+        #time {
+            font-size: 49px; /* Text ka font size */
+            color: white; /* Text ka color */
+            font-family: Arial, sans-serif; /* Font family */
+            text-align: center; /* Text ko center mein align karega */
+            padding: 20px; /* Text ke charo taraf padding */
+            background-color: #1d163b; /* Background color */
+            border-radius: 10px; /* Border ka round shape */
+            width: 250px; /* Text ka width */
+            margin: 0 auto; /* Text ko horizontally center mein laayega */
+            box-shadow: #3d355e;
+        }
+        .buttons{
+            width: 92%;
+            margin: 30px 30px 0 auto;
+            display: flex;
+            justify-content: space-between;
+        }
+        .buttons button{
+            padding: 7px 25px;
+            background-color: #333;
+            color: white;
+            border: none;
+            font-size: 18px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+    
+    </style>
+</head>
+<body>
+    <div class="stop">
+        <h1 id="time">00:00:00</h1>
+        <div class="buttons">
+        <button onclick="startwatch()" class="btn">Start</button>
+        <button onclick="stop()" class="btn">Stop</button>
+        <button onclick="reset()"class="btn">Reset</button>
+        </div>
+    </div>
+
+<script>
+let seconds=0;
+let minutes=0;
+let  hours = 0;
+let display=document.getElementById("time");
+let timer;
+function stopwatch(){
+    seconds++
+    if(seconds>=60){
+       seconds=0;
+        minutes++;
+}
+if (minutes >=60) {
+   hours ++;
+   minutes=0;
+}
+display.textContent=pad(hours) +":"+pad(minutes)+ ":" + pad(seconds);
+};
+function startwatch(){
+timer=setInterval(stopwatch,1000);}
+
+
+function pad(number){
+    return (number<10)? '0'+number: number;
+}
+function stop(){
+    clearInterval(timer);
+}
+function reset(){
+    clearInterval(timer);
+    hours=0;
+    seconds=0;
+    minutes=0;
+display.textContent=pad(hours) +":"+pad(minutes)+ ":" + pad(seconds);
+}
+</script>
+
+
+</body>
+</html>
